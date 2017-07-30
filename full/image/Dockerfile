@@ -37,6 +37,7 @@ RUN ./bin/icingacli setup config directory --group icingaweb2 --config=/webconfi
 EXPOSE 80 443
 
 VOLUME /webconfig
+VOLUME /config
 
 # setup start scripts
 RUN mkdir -p /etc/my_init.d
