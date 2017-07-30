@@ -1,0 +1,32 @@
+version: '3.3'
+
+services:
+  icinga-base:
+    image: ricktap/icinga-base
+    build: base/image
+    volumes:
+      - config:/config
+    depends_on:
+      - "mysql"
+
+  icinga-web:
+    image: ricktap/icinga-web
+    ports:
+      - 8080:80
+    build: web/image
+    links:
+      - "mysql:db"
+      - "icinga-base:icinga"
+    volumes:
+      - data:/config
+    depends_on:
+      - "icinga-base"
+
+  mysql:
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+
+volumes:
+  data:
+  config:
