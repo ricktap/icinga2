@@ -1,11 +1,11 @@
 NAME = ricktap/icinga2-web
-VERSION = 0.5
+VERSION = latest
 RUNNER = https://gist.github.com/ricktap/4df5a564f189d0aaba357436aee38717/raw
 
 .PHONY: build run test rm logs
 
 build:
-	docker build -t $(NAME):$(VERSION) --rm image
+	docker build -t $(NAME):$(VERSION) image
 
 run: rm
 	docker run --rm -d -p 8080:80 -p 8443:443 --name $(shell basename $(NAME)) $(NAME):$(VERSION)

@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 set -e
 
-if [ ! -f /etc/icingaweb2/setup.token ]; then
+if [ ! -f /webconfig/setup.token ]; then
     echo "creating new setup token "
-    /opt/icingaweb2/bin/icingacli setup token create
+    /webconfig/bin/icingacli setup token create
+    chgrp icingaweb2 /webconfig/setup.token
 else
     echo "this is your setup token: "
     /opt/icingaweb2/bin/icingacli setup token show
